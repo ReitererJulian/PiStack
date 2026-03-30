@@ -1,57 +1,66 @@
-Documentation / notes from designing to printing the Pi server case
+# Raspberry Pi Server Case
 
-## Design
+## Design Goals
 
-**Case Goals**:
-
-- Good air flow
-- Cooling Raspberry / Sata / Switch
-- Expandable (One more Raspberry Pi and Sata)
-- Reaching all ports including GPIO
-- Individual pieces to ensure maintainability
-- Screw in place Raspberry Pi Slot
+- Good airflow
+    
+- Cooling for Raspberry Pi, SATA, and Switch
+	
+- Expandable (additional Raspberry Pi + SATA)
+    
+- Full access to all ports (including GPIO)
+    
+- Modular design for maintainability
+    
+- Screw-mounted Raspberry Pi slot
+    
 
 ---
 
 ## Printing
 
-**Print time**:
+### Print Time Overview
 
-| **Part**           | **Print-Time** |
-| -------------- | ---------- |
-| Base           | 35h        |
-| Top plate      | 21h        |
-| Legs           | 15h        |
-| Switch bracket | 8h         |
-| Pi Bracket     | 8h         |
-| Port wall      | 12h        |
-| Back wall      | 20h        |
-| Switch wall    | 17h        |
-| Pi wall        | 17h        |
+|Part|Time|
+|---|---|
+|Base|35h|
+|Top Plate|21h|
+|Legs|15h|
+|Switch Bracket|8h|
+|Pi Bracket|8h|
+|Port Wall|12h|
+|Back Wall|20h|
+|Switch Wall|17h|
+|Pi Wall|17h|
 
-Total hours: ~ ```160h```
+**Total:** ~160h
 
-<br>
+---
 
+### Print Priority
 
-**Print priority**:
+#### Core Setup (~100h)
 
-For Core Functions:
+- Base
+    
+- Legs
+    
+- Pi Bracket
+    
+- Pi Wall
+    
+- Switch Bracket
+    
+- Back Wall
+    
 
-* Base
-* Legs
-* Pi bracket
-* Pi wall
-* Switch bracket
-* back wall
+#### Complete Setup (~60h)
 
-Total hours: ~ ```100h```
+- Port Wall
+    
+- Top Plate
+    
+- Switch Wall
+    
 
-Complete Setup:
-
-* Port wall
-* Top plate
-* Switch wall
-
-Total hours: ~ ```60h``` 
-
+---
