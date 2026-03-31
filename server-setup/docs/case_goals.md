@@ -1,8 +1,0 @@
-Case Goals:
-
-- Good air flow
-- Cooling Raspberry / Sata / Switch
-- Expandable (One more Raspberry Pi and Sata)
-- Reaching all ports including GPIO
-- Individual pieces to ensure maintainability
-- Screw in place Raspberry Pi Slot
