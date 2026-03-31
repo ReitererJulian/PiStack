@@ -76,7 +76,7 @@ Each message can include:
 - Response from the server
 	- Status code (200 OK, 404 Not found, 500 Error)
 	- Headers (metadata)
-	- Body (actual data, like JSOM)
+	- Body (actual data, like JSON)
 
 ---
 
