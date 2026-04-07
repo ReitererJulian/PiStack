@@ -41,3 +41,25 @@ zram0       254:0    0     2G  0 disk [SWAP]
 sda -> Sata
 mmcblk0 -> Boot SD
 ```
+
+---
+
+## Temperature
+Using a passive cooler and a Noctua 120mm fan
+
+Max Temp after 2 minute stress test (100% CPU usage)
+
+
+### With fan (no case)
+
+#### 100% fan speed
+- Max temp: `39.7`°C
+
+#### 50% fan speed (silent)
+- Max temp: `41.9`°C
+
+---
+
+### Without fan (with passive cooler)
+
+- Max temp: `68.8`°C
