@@ -96,7 +96,7 @@ public class User
 }
 ```
 
-## How everything works together
+### How everything works together
 
 - Client / Browser sends a request -> `GET /api/users`
 - Controller receives the request
@@ -111,7 +111,7 @@ public class User
 ]
 ``` 
 
-## Starting a Spring Boot App
+### Starting a Spring Boot App
 
 The main class starts everything
 
@@ -129,3 +129,15 @@ This starts automatically:
 
 - The integrated server
 - the complete backed (Controller etc)
+
+## What is IoC?
+
+Inversion of Control (IoC) is the backbone of Spring Boot.
+Normally you create objects in your code, when you need them. 
+But with IoC you let Spring deiced when your Objects get created 
+
+## What is Dependency Injection?
+
+Dependency Injection is how IoC is implemented. Instead of your class creating its own dependencies (like `new UserService()`), Spring injects them for you, usually through the constructor. This is why your `UserController` takes a `UserService` in its constructor rather than creating one itself.
+
+## What is a @Bean?
