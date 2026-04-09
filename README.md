@@ -5,8 +5,6 @@ Documentation repo for the building process of my Raspberry Pi Server / Kluster
 - Explain Spring Boot in Docs
 - Explain PostgreSQL in Docs
 - Start Printing Base in PLA
-- Begin listening to Book
-- Combine local Spring Boot with PostgreSQL7
 
 ## Understand ZeroLift Code
 
@@ -23,4 +21,8 @@ Documentation repo for the building process of my Raspberry Pi Server / Kluster
 
 ### Frontend:
 - `frontend/src/main/java/org.zerolift.frontend/ClientConfig.java`
+
+## E3DS
+
+### Tech Stack
 
