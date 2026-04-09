@@ -34,5 +34,30 @@ Documentation repo of my learning process
 
 Start learning the basics of python
 
+---
+
+## Linux
+
+### Endeavuor OS
+
+- Light, arch base distro (no bloatware)
+- `yay` and `pacman` -> no installers
+
+--- 
+
+## Calendar
+
+### ZeroLift / PiStack
+
+Time: `7 Weeks`
+
+Road map: [[rdev/pi-stack/software/docs/learning-roadmap|learning-roadmap]]
+
+
+### E3DS
+
+Time: `11 Weeks`
+
+Road map: [[rdev/e3ds/software/docs/learning-roadmap|learning-roadmap]]
 
 
