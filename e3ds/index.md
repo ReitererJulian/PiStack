@@ -16,7 +16,7 @@
 
 ### Software-Stack
 
-- [[python]]
+- [[python-basics]]
 - [[flutter]]
 - [[keycloak]]
 - [[uv]]

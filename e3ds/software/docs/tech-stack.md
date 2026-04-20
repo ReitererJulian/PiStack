@@ -1,6 +1,6 @@
 ## Software stack
 
-- [[python]]
+- [[python-basics]]
 - [[fast-api]]
 - [[postgreSQL]]
 - [[flutter]]

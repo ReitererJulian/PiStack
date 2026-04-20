@@ -2,6 +2,90 @@
 
 ## What is Spring Boot?
 
+## What is IoC?
+
+Inversion of Control (IoC) is the backbone of Spring Boot.
+Normally you create objects in your code, when you need them. 
+But with IoC you let Spring deiced when your Objects get created 
+
+### Easy Example
+
+#### Without IoC
+
+- You go into the Kitchen
+- Prepare all ingredients
+- Preheat the oven
+- Bake the pizza
+
+#### With IoC
+
+- You go into a restaurant
+- Tell them you want a pizza
+
+---
+
+## What is Dependency Injection?
+
+Dependency Injection is how IoC is implemented. 
+Instead of your class creating its own dependencies (like `new UserService()`), Spring injects them for you, usually through the constructor. This is why your `UserController` takes a `UserService` in its constructor rather than creating one itself.
+
+### Easy Example
+
+Your pizza needs more then just dough - it needs toppings.
+These toppings are `dependencys`
+
+Without DI your pizza would need to get all the toppings by itself
+
+```java
+public class UserController
+{
+	private UserService userService = new UserService()
+}
+``` 
+
+But with DI you just put (`ìnject`) toppings on top of the pizza
+
+```java
+@RestController public class UserController 
+{
+	private final UserService userService;
+		
+	public UserController(UserService userService) 
+	{
+		this.userService = userService; 
+	}
+}
+``` 
+
+
+In your code, you just say: "I need a `UserService`"
+Spring looks for it, then `injects` it into your code through a constructor 
+
+---
+
+## What is a @Bean?
+
+For your restaurant to know what can be served, it needs to be written down somewhere
+
+`@Component`/`@Service` Are the standard things which Spring knows and creates automatically
+These are used for self written classes
+
+`@Bean` Is like a special dish using external ingredients (libraries) which Spring does not know
+You can define if the special dish is requested, it should use this object I created
+`@Bean` is used for methods, which source code you can not change (external Classes)
+
+```java
+@Configuration
+public class AppConfig
+{
+	@Bean
+	public ExternalPasswordEncoder passwordEncoder()
+	{
+		return new PasswordEncoder();
+	}
+}
+```
+
 Spring Boot is a Tool that helps you build applications (server + API) quickly and easily
 
 ### Think like this:
@@ -33,6 +117,9 @@ You will need a Controller.
 The controller is the class that handles HTTP requests and defines the URLs.
 
 ### Controller
+
+The controller has no logic inside.
+It just forwards requests
 
 ```java
 @RestController  
@@ -129,15 +216,3 @@ This starts automatically:
 
 - The integrated server
 - the complete backed (Controller etc)
-
-## What is IoC?
-
-Inversion of Control (IoC) is the backbone of Spring Boot.
-Normally you create objects in your code, when you need them. 
-But with IoC you let Spring deiced when your Objects get created 
-
-## What is Dependency Injection?
-
-Dependency Injection is how IoC is implemented. Instead of your class creating its own dependencies (like `new UserService()`), Spring injects them for you, usually through the constructor. This is why your `UserController` takes a `UserService` in its constructor rather than creating one itself.
-
-## What is a @Bean?

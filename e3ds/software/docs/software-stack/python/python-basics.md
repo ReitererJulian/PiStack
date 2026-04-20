@@ -67,3 +67,25 @@ while count < 5:
 	print(count)
 	count += 1
 ``` 
+
+
+### Functions
+
+Keyword `def`
+No need for a return datatype like in java
+
+```python
+def greet(name)
+	return "Hello " + name
+	
+message = greet("Max")
+print(messgage)
+``` 
+
+```python
+def add(a, b)
+	return a + b #Can be int or float
+	
+result = add(5, 10) # result is a int 
+result2 = add("Hi ", "!") # result2 is a string
+``` 
