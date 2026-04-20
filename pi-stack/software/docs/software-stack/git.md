@@ -97,6 +97,11 @@ git merge <branch>
 git checkout --file.txt
 ```
 
+### Enable Credential Helper
+
+```bash
+git config --global credential.helper
+```
 
 ---
 
