@@ -61,3 +61,16 @@ Time: `11 Weeks`
 Road map: [[rdev/e3ds/software/docs/learning-roadmap|learning-roadmap]]
 
 
+## Commands
+
+### Scan network:
+
+```bash
+nmap -sn 192.168.31.0/24
+```
+
+### SSH
+
+```bash
+ssh piname@ip
+``` 
