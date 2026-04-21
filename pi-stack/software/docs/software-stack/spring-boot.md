@@ -2,209 +2,250 @@
 
 ## What is Spring Boot?
 
-Spring Boot is a java framework that lets you build web servers using REST-API quickly.
-Without spring boot you need to setup everything by yourself. Like configuring a server.
-You just write classes and use special annotations like `@RestController` and spring boot takes care of the rest.
+Spring Boot is a Java framework that lets you build web servers with REST APIs quickly.  
+Without Spring Boot, you need to set everything up by yourself, like configuring a server.
+
+You just write classes and use special annotations like `@RestController`, and Spring Boot takes care of the rest.
+
+It also makes it a lot easier to work with databases.
+
+---
 
 ## What is IoC?
 
-Inversion of Control (IoC) is the backbone of Spring Boot.
-Normally you create objects in your code, when you need them. 
-But with IoC you let Spring deiced when your Objects get created 
+Inversion of Control (IoC) is the backbone of Spring Boot.  
+Normally, you create objects in your code when you need them.  
+But with IoC, you let Spring decide when your objects get created.
 
-### Easy Example
+### Easy example
 
 #### Without IoC
 
-- You go into the Kitchen
+- You go into the kitchen
+    
 - Prepare all ingredients
+    
 - Preheat the oven
+    
 - Bake the pizza
+    
 
 #### With IoC
 
 - You go into a restaurant
+    
 - Tell them you want a pizza
+    
 
 ---
 
 ## What is Dependency Injection?
 
-Dependency Injection is how IoC is implemented. 
-Instead of your class creating its own dependencies (like `new UserService()`), Spring injects them for you, usually through the constructor. This is why your `UserController` takes a `UserService` in its constructor rather than creating one itself.
+Dependency Injection (DI) is how IoC is implemented.  
+Instead of your class creating its own dependencies (like `new UserService()`), Spring injects them for you, usually through the constructor.
 
-### Easy Example
+That is why your `UserController` takes a `UserService` in its constructor rather than creating one itself.
 
-Your pizza needs more then just dough - it needs toppings.
-These toppings are `dependencys`
+### Easy example
 
-Without DI your pizza would need to get all the toppings by itself
+Your pizza needs more than just dough — it needs toppings.  
+These toppings are **dependencies**.
 
-```java
-public class UserController
-{
-	private UserService userService = new UserService()
-}
-``` 
-
-But with DI you just put (`ìnject`) toppings on top of the pizza
+#### Without DI
 
 ```java
-@RestController public class UserController 
-{
-	private final UserService userService;
-		
-	public UserController(UserService userService) 
-	{
-		this.userService = userService; 
-	}
+public class UserController {
+    private UserService userService = new UserService();
 }
-``` 
+```
 
+#### With DI
 
-In your code, you just say: "I need a `UserService`"
-Spring looks for it, then `injects` it into your code through a constructor 
+You just “inject” the dependency:
+
+```java
+@RestController
+public class UserController {
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+}
+```
+
+In your code you simply say:  
+“I need a `UserService`.”
+
+Spring looks for it and injects it into your class via the constructor.
 
 ---
 
 ## What is a @Bean?
 
-For your restaurant to know what can be served, it needs to be written down somewhere
+For your restaurant to know what can be served, it needs to be written down somewhere.
 
-`@Component`/`@Service` Are the standard things which Spring knows and creates automatically
-These are used for self written classes
+- `@Component` / `@Service` are standard classes that Spring detects and creates automatically.
+    
+- These are used for your own classes.
+    
 
-`@Bean` Is like a special dish using external ingredients (libraries) which Spring does not know
-You can define if the special dish is requested, it should use this object I created
-`@Bean` is used for methods, which source code you can not change (external Classes)
+`@Bean` is used for external classes (libraries) that Spring does not manage by default.
+
+You define that Spring should use the object you provide.
 
 ```java
 @Configuration
-public class AppConfig
-{
-	@Bean
-	public ExternalPasswordEncoder passwordEncoder()
-	{
-		return new PasswordEncoder();
-	}
+public class AppConfig {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new PasswordEncoder();
+    }
 }
 ```
 
-Spring Boot is a Tool that helps you build applications (server + API) quickly and easily
+---
+
+## What is Spring Boot?
+
+Spring Boot is a tool that helps you build applications (server + API) quickly and easily.
 
 ### Think like this:
 
 - Your Java app is the restaurant
-- Spring Boot sets it all up
-	- Starting a server 
-	- Creating requests (/users)
-	- Handling requests
+    
+- Spring Boot sets everything up:
+    
+    - Starts a server
+        
+    - Creates routes (`/users`)
+        
+    - Handles requests
+        
 
-Without Spring Boot, you would have to build all that yourself
+Without Spring Boot, you would have to build all of that yourself.
 
+---
 
-### Easy example in Java
+### Easy Java example
+
 ```java
 @GetMapping("/users")
-public List<Users> getUsers()
-{
-	return userService.getAllUsers();
+public List<User> getUsers() {
+    return userService.getAllUsers();
 }
 ```
 
-This calls the method ```getUsers()``` every time the server receives a ```GET /users```  request. The method returns all users as a list.
+This method is called every time the server receives a `GET /users` request.  
+It returns all users as a list.
 
+---
 
 ## What you need for this to work
 
-You will need a Controller. 
-The controller is the class that handles HTTP requests and defines the URLs.
+You need a Controller.  
+The controller handles HTTP requests and defines the URLs.
 
-### Controller
+---
 
-The controller has no logic inside.
-It just forwards requests
+## Controller
+
+The controller contains no business logic.  
+It only forwards requests.
 
 ```java
-@RestController  
-@RequestMapping("/api")  
-public class UserController  
-{  
-	private final UserService userService;  
-  
-	public UserController(UserService userService)  
-	{  
-		this.userService = userService;  
-	}  
-  
-	@GetMapping("/users")  
-	public List<User> getUsers()  
-	{  
-	return userService.getAllUsers();  
-	}  
+@RestController
+@RequestMapping("/api")
+public class UserController {
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping("/users")
+    public List<User> getUsers() {
+        return userService.getAllUsers();
+    }
 }
 ```
 
-When you send a GET request to `localhost:8080/api/users`,
-you will receive a list of all users.
+When you send a request to  
+`localhost:8080/api/users`,  
+you receive a list of users.
 
-### Service
+---
 
-The service class is there for the actual work
+## Service
+
+The service class contains the business logic.
 
 ```java
 @Service
-public class UserService
-{
-	public List<User> getAllUsers()
-	{
-		return List.of(
-			new User(1, "Max"),
-			new User(2, "Anna")
-		);
-	}
+public class UserService {
+
+    public List<User> getAllUsers() {
+        return List.of(
+            new User(1, "Max"),
+            new User(2, "Anna")
+        );
+    }
 }
 ```
-This can also be used to get data from a database
 
-### Model
+This can also be used to fetch data from a database.
 
-The model class defines the objects you want to work with, in our case `User`
+---
+
+## Model
+
+The model class defines your data structure (e.g. `User`).
 
 ```java
-public class User
-{
-	private int id;
-	private String name;
-	
-	public User(int id, String name)
-	{
-		this.id = id;
-		this.name = name;
-	}
-	
-	// Getter and Setter
+public class User {
+
+    private int id;
+    private String name;
+
+    public User(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    // getters and setters
 }
 ```
 
-### How everything works together
+---
 
-- Client / Browser sends a request -> `GET /api/users`
-- Controller receives the request
-- Controller calls service
+## How everything works together
+
+- Client / Browser sends request → `GET /api/users`
+    
+- Controller receives request
+    
+- Controller calls Service
+    
 - Service gets data
-- Controller returns the data as a JSON
+    
+- Controller returns data as JSON
+    
 
-```JSON
+```json
 [
   { "id": 1, "name": "Max" },
   { "id": 2, "name": "Anna" }
 ]
-``` 
+```
 
-### Starting a Spring Boot App
+---
 
-The main class starts everything
+## Starting a Spring Boot app
+
+The main class starts everything:
 
 ```java
 @SpringBootApplication
@@ -216,26 +257,33 @@ public class MyApplication {
 }
 ```
 
-This starts automatically:
+This automatically starts:
 
-- The integrated server
-- the complete backed (Controller etc)
+- The embedded server
+    
+- The whole backend (controllers, services, etc.)
+    
+
+---
 
 ## Annotation Recap
 
 ### `@SpringBootApplication`
 
-Starts the entire Spring Boot app.
-Combines `@Configuration`, `@EnableAutoCOnfiguration` and `@ComponentScan` in one annotation 
+Starts the entire Spring Boot app.  
+Combines:
 
-```java 
-@SpringBootAppplication
-public class SpringApp
-{
-	public static void main(String[] args)
-	{
-		SpringApplication.run(SpringApp.class, args);
-	}
+- `@Configuration`
+- `@EnableAutoConfiguration`
+- `@ComponentScan`
+
+```java
+@SpringBootApplication
+public class SpringApp {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringApp.class, args);
+    }
 }
 ```
 
@@ -243,29 +291,20 @@ public class SpringApp
 
 ### `@RestController`
 
-Marks all the class as a HTTP Controller.
-Combines `@Controleller` and `@ResponseBody`
-Returns data as `JSON` not as a HTLM-Page
-
-```java
-@RestController
-public class UserController
-{
-	...
-}
-```
+Marks a class as an HTTP controller.  
+Combines `@Controller` and `@ResponseBody`.  
+Returns JSON instead of HTML.
 
 ---
 
 ### `@RequestBody`
 
-Reads a JSON-Body and converts it into a usable java object
+Converts JSON request body into a Java object.
 
 ```java
 @PostMapping("/users")
-public User createUser(@RequestBody User user)
-{
-	return userService.save(user);
+public User createUser(@RequestBody User user) {
+    return userService.save(user);
 }
 ```
 
@@ -273,14 +312,12 @@ public User createUser(@RequestBody User user)
 
 ### `@RequestParam`
 
-Reads query parameters like /users?name=Max
-Use full for sorting / searching
+Reads query parameters like `/users?name=Max`.
 
 ```java
 @GetMapping("/users")
-public List<Users> search(@RequestParam String name)
-{
-	...
+public List<User> search(@RequestParam String name) {
+    return userService.findByName(name);
 }
 ```
 
@@ -288,42 +325,28 @@ public List<Users> search(@RequestParam String name)
 
 ### `@RequestMapping`
 
-Sets the Base-URL-Path for all methods in the class
+Sets a base URL for a controller.
 
 ```java
-@RestController
 @RequestMapping("/api")
-public class UserController
-{
-	...
-}
 ```
 
 ---
 
 ### `@GetMapping`
 
-Defines a method as a HTTP-Get request
-
-```java
-@GetMapping("/users")
-public List<User> getUser()
-{
-	return userService.getAllUsers();
-}
-```
+Handles HTTP GET requests.
 
 ---
 
 ### `@PostMapping`
 
-Defines a method as a HTTP-Post request
+Handles HTTP POST requests.
 
 ```java
 @PostMapping("/users")
-public User createUser(@RequestBody User user)
-{
-	return UserService.save(user);
+public User createUser(@RequestBody User user) {
+    return userService.save(user);
 }
 ```
 
@@ -331,25 +354,25 @@ public User createUser(@RequestBody User user)
 
 ### `@DeleteMapping`
 
-Defines a method as a HTTP-Delete request
+Handles HTTP DELETE requests.
 
 ```java
-@DeleteMapping("/users/{id})
-public void deleteUser(@PathVariable int id)
-{
-	userService.delete(id);
+@DeleteMapping("/users/{id}")
+public void deleteUser(@PathVariable int id) {
+    userService.delete(id);
 }
 ```
 
+---
+
 ### `@PathVariable`
 
-Finds a value directly through a URL-Path
+Extracts values from the URL path.
 
 ```java
 @GetMapping("/users/{id}")
-public User getUser(@PathVariable int id)
-{
-	return userService.findByID(id);
+public User getUser(@PathVariable int id) {
+    return userService.findById(id);
 }
 ```
 
@@ -357,17 +380,15 @@ public User getUser(@PathVariable int id)
 
 ### `@Component`
 
-General annotation - Spring recognizes these classes and manages them.
-`@Service` and `@Repository` are variants of this annotation
+Generic Spring-managed component. Spring detects and manages it automatically.
 
 ```java
 @Component
-public class EmialValidator
-{
-	public boolean isValid(String email)
-	{
-		...
-	}
+public class EmailValidator {
+
+    public boolean isValid(String email) {
+        return email.contains("@");
+    }
 }
 ```
 
@@ -375,17 +396,18 @@ public class EmialValidator
 
 ### `@Service`
 
-Marks a class as a Service.
-Spring makes the class ready for `DI`
+Marks a service layer class. Used for business logic.
 
 ```java
 @Service
-public class UserService
-{
-	public List<Users> getAllUsers()
-	{
-		...
-	}
+public class UserService {
+
+    public List<User> getAllUsers() {
+        return List.of(
+            new User(1, "Max"),
+            new User(2, "Anna")
+        );
+    }
 }
 ```
 
@@ -393,18 +415,16 @@ public class UserService
 
 ### `@Repository`
 
-Marks the class as a database connection.
-Like `@Service` but for database actions.
-Spring handles database errors different than other errors
+Marks a database access class.  
+Spring handles database-related exceptions differently for repositories.
 
 ```java
 @Repository
-public class UserRepository
-{
-	public User findByID(int id)
-	{
-		...
-	}
+public class UserRepository {
+
+    public User findById(int id) {
+        return new User(id, "Max");
+    }
 }
 ```
 
@@ -412,28 +432,27 @@ public class UserRepository
 
 ### `@Bean`
 
-Spring handles the returned object as a `Bean`.
-Used for external classes with no possibility to change the source code.
+Spring manages the returned object as a bean.  
+Used for external classes that you cannot modify.
 
 ```java
 @Bean
-	public PasswordEncoder encoder()
-	{
-		return new ExternalPasswordEncoder();
-	}
+public PasswordEncoder encoder() {
+    return new PasswordEncoder();
+}
 ```
 
 ---
 
 ### `@Autowired`
 
-Spring injects itself into the right `Bean`.
-Not needed in newer Spring versions (Constructor Injection)
+Spring injects dependencies automatically.  
+(Usually not needed anymore if you use constructor injection.)
 
 ```java
 @Service
-public class OrderService 
-{
+public class OrderService {
+
     @Autowired
     private UserService userService;
 }
@@ -443,19 +462,18 @@ public class OrderService
 
 ### `@Configuration`
 
-Marks a class as source for `@Bean` Definitions.
+Marks a class as a source of bean definitions.
 
 ```java
 @Configuration
-public class AppConfig
-{
-	@Bean
-	public PasswordEncoder encoder()
-	{
-		return new ExternalPasswordEncoder();
-	}
+public class AppConfig {
+
+    @Bean
+    public PasswordEncoder encoder() {
+        return new PasswordEncoder();
+    }
 }
 ```
 
----
 
+---
