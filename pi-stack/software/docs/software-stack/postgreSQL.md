@@ -46,7 +46,7 @@ This causes a big bottleneck for large web applications
 
 #### PostgreSQL
 
-Postregs runs as a server process and can handle hundreds of requests at the same time.
+Postgres runs as a server process and can handle hundreds of requests at the same time.
 It is built to be reliable, easy to scale and fast.
 Standard for web applications.
 
@@ -104,8 +104,8 @@ Using the `spring.jpa.hibernate.ddl-auto=` you can control `hibernate`  (Framewo
 
 ```properties
 # update = Spring changes the tables automatically
-# create = Tables 
-# none
+# create = Tables get wiped and created after every app start
+# none = Spring does nothing - you need to manage everything
 ``` 
 
 --- 
