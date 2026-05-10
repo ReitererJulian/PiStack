@@ -1,4 +1,4 @@
-package dev.reiti.backend;
+package dev.reiti.backend.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
