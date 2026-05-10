@@ -31,4 +31,9 @@ public class CarController {
         return carRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Car not found: " + id));
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteCar(@PathVariable UUID id) {
+        carRepository.deleteById(id);
+    }
 }
